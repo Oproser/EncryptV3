@@ -76,6 +76,17 @@ function UILibrary.Load(GUITitle)
 	Draggable.Position = UDim2.new(0.8, -306, 0.308, 85)
 	Draggable.Size = UDim2.new(0, 549,0, 23)
 
+	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+		if gameProcessed then return end
+		if input.KeyCode == Enum.KeyCode.LeftAlt then
+			if Encrypt.Enabled == true then
+				Encrypt.Enabled = false
+			else
+				Encrypt.Enabled = true
+			end
+		end
+	end)
+
 
 
 
@@ -89,14 +100,14 @@ function UILibrary.Load(GUITitle)
 	Background.Position = UDim2.new(0, 0, 0.022, 0)
 	Background.Size = UDim2.new(0, 548,0, 73)
 	Background.ZIndex = 0
-	
+
 	local UICorner = Instance.new("UICorner")
 	UICorner.Parent = Background
-	
+
 	local UIStroke = Instance.new("UIStroke")
 	UIStroke.Parent = Background
 	UIStroke.Color = Color3.fromRGB(37, 37, 37)
-	
+
 	local Top = Instance.new("Frame")
 	Top.Name = "Top"
 	Top.Parent = Background
@@ -105,7 +116,7 @@ function UILibrary.Load(GUITitle)
 	Top.Position = UDim2.new(0, 0, 0, 0)
 	Top.Size = UDim2.new(0, 548,0, 66)
 	Top.ZIndex = 0
-	
+
 	local UICorner = Instance.new("UICorner")
 	UICorner.Parent = Top
 
@@ -131,7 +142,7 @@ function UILibrary.Load(GUITitle)
 	Title.BorderSizePixel = 0
 	Title.Size = UDim2.new(0, 114, 0, 22)
 	Title.Position = UDim2.new(0.395, 0,0.022, 0)
-	
+
 	--[[
 	local ImageAvatar = Instance.new("ImageLabel")
 	ImageAvatar.Name = "ImageAvatar"
@@ -184,7 +195,7 @@ function UILibrary.Load(GUITitle)
 	BackgroundThing.Position = UDim2.new(0.015, 0,0.153, 0)
 	BackgroundThing.Size = UDim2.new(0, 530, 0, 27)
 	BackgroundThing.ZIndex = 11
-	
+
 	local UICorner = Instance.new("UICorner")
 	UICorner.Parent = BackgroundThing
 
@@ -199,7 +210,7 @@ function UILibrary.Load(GUITitle)
 	UIListLayout.FillDirection = "Horizontal"
 	UIListLayout.VerticalAlignment = "Center"
 	UIListLayout.Padding = UDim.new(0,30)
-	
+
 	local UIPadding = Instance.new("UIPadding")
 	UIPadding.Parent = BackgroundThing
 	UIPadding.PaddingLeft = UDim.new(0, 15)
@@ -286,14 +297,14 @@ function UILibrary.Load(GUITitle)
 		TabName.MouseButton1Down:Connect(function(x,y)
 			if TabName.BorderColor3 == Color3.fromRGB(255, 0, 0) then
 				TabName.BorderColor3 = Color3.fromRGB(0, 255, 0)
-				
+
 				TabName.TextColor3 = Color3.fromRGB(163, 163, 163)
-				
-				
+
+
 				Page.Visible = true
-				
+
 				local Highest = 0
-				
+
 				for _,Class in pairs(Page.Left:GetChildren()) do
 					if Class.ClassName == "Frame" then
 						if Class.Size.Y.Offset > Highest then
@@ -301,7 +312,7 @@ function UILibrary.Load(GUITitle)
 						end
 					end
 				end
-				
+
 				for _,Class in pairs(Page.Right:GetChildren()) do
 					if Class.ClassName == "Frame" then
 						if Class.Size.Y.Offset > Highest then
@@ -309,11 +320,11 @@ function UILibrary.Load(GUITitle)
 						end
 					end
 				end
-				
+
 				Highest = 73 + Highest + 10
 
 				Background.Size = UDim2.new(0, 548,0, Highest)
-				
+
 				for _,Class in pairs(BackgroundThing:GetChildren()) do
 					if Class.ClassName == "TextButton" and Class ~= TabName then
 						Class.BorderColor3 = Color3.fromRGB(255, 0, 0)
@@ -335,7 +346,7 @@ function UILibrary.Load(GUITitle)
 			end
 
 		end)
-		
+
 		local ActionLibrary = {}
 
 		function ActionLibrary.AddAction(TabTitle, Side)
@@ -354,7 +365,7 @@ function UILibrary.Load(GUITitle)
 			Tab.Size = UDim2.new(0, 264,0, 40)
 			Tab.AnchorPoint = Vector2.new(0.5,0.5)
 			Tab.ZIndex = 1
-			
+
 			local UICorner = Instance.new("UICorner")
 			UICorner.Parent = Tab
 
@@ -453,7 +464,7 @@ function UILibrary.Load(GUITitle)
 				Back.Position = UDim2.new(0.5, 0,0.5, 0)
 				Back.Size = UDim2.new(0, 14,0, 14)
 				Back.ZIndex = 3
-		
+
 
 				local UIStroke = Instance.new("UIStroke")
 				UIStroke.Parent = Back
@@ -538,11 +549,11 @@ function UILibrary.Load(GUITitle)
 					TextLabel.TextSize = 14
 					TextLabel.TextXAlignment = "Left"
 					TextLabel.ZIndex = 10
-					
+
 					local UIStroke = Instance.new("UIStroke")
 					UIStroke.Parent = TextLabel
 					UIStroke.Color = Color3.fromRGB(34, 34, 34)
-					
+
 
 					local InputButName = Instance.new("TextLabel")
 					InputButName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -558,11 +569,11 @@ function UILibrary.Load(GUITitle)
 					InputButName.TextXAlignment = "Center"
 					InputButName.TextYAlignment = "Center"
 					InputButName.ZIndex = 4
-					
+
 					local UIStroke = Instance.new("UIStroke")
 					UIStroke.Parent = InputButName
 					UIStroke.Color = Color3.fromRGB(34, 34, 34)
-					
+
 					local Spacer = Instance.new("Frame")
 					Spacer.Name = "Back"
 					Spacer.Parent = Button
@@ -571,7 +582,7 @@ function UILibrary.Load(GUITitle)
 					Spacer.Position = UDim2.new(0.5, 0,0, 0)
 					Spacer.Size = UDim2.new(0.9, 0,0, 1)
 					Spacer.ZIndex = 3
-					
+
 					local UIStroke = Instance.new("UIStroke")
 					UIStroke.Parent = Spacer
 					UIStroke.Color = Color3.fromRGB(34, 34, 34)
