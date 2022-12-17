@@ -87,7 +87,7 @@ function UILibrary.Load(GUITitle)
 	Background.BackgroundColor3 = Color3.fromRGB(46, 46, 46)
 	Background.BorderSizePixel = 0
 	Background.Position = UDim2.new(0, 0, 0.022, 0)
-	Background.Size = UDim2.new(0, 548,0, 345)
+	Background.Size = UDim2.new(0, 548,0, 73)
 	Background.ZIndex = 0
 	
 	local UICorner = Instance.new("UICorner")
@@ -292,6 +292,28 @@ function UILibrary.Load(GUITitle)
 				
 				Page.Visible = true
 				
+				local Highest = 0
+				
+				for _,Class in pairs(Page.Left:GetChildren()) do
+					if Class.ClassName == "Frame" then
+						if Class.Size.Y.Offset > Highest then
+							Highest = Class.Size.Y.Offset
+						end
+					end
+				end
+				
+				for _,Class in pairs(Page.Right:GetChildren()) do
+					if Class.ClassName == "Frame" then
+						if Class.Size.Y.Offset > Highest then
+							Highest = Class.Size.Y.Offset
+						end
+					end
+				end
+				
+				Highest = 73 + Highest + 10
+
+				Background.Size = UDim2.new(0, 548,0, Highest)
+				
 				for _,Class in pairs(BackgroundThing:GetChildren()) do
 					if Class.ClassName == "TextButton" and Class ~= TabName then
 						Class.BorderColor3 = Color3.fromRGB(255, 0, 0)
@@ -308,6 +330,7 @@ function UILibrary.Load(GUITitle)
 			else
 				TabName.BorderColor3 = Color3.fromRGB(255, 0, 0)
 				TabName.TextColor3 = Color3.fromRGB(220, 228, 229)
+				Background.Size = UDim2.new(0, 548,0, 70)
 				Page.Visible = false
 			end
 
@@ -426,7 +449,7 @@ function UILibrary.Load(GUITitle)
 				Back.Name = "Back"
 				Back.Parent = Enable
 				Back.AnchorPoint = Vector2.new(0.5,0.5)
-				Back.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
+				Back.BackgroundColor3 = Color3.fromRGB(255, 115, 102)
 				Back.Position = UDim2.new(0.5, 0,0.5, 0)
 				Back.Size = UDim2.new(0, 14,0, 14)
 				Back.ZIndex = 3
@@ -462,14 +485,14 @@ function UILibrary.Load(GUITitle)
 						Color = not Color
 						Callback(false)
 						local tween = TweenService:Create(Back,TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
-							BackgroundColor3 = Color3.fromRGB(53, 53, 53)
+							BackgroundColor3 = Color3.fromRGB(255, 115, 102)
 						})
 						tween:Play()
 					else
 						Color = not Color
 						Callback(true)
 						local tween = TweenService:Create(Back,TweenInfo.new(0.4,Enum.EasingStyle.Quad,Enum.EasingDirection.Out,0,false,0),{
-							BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+							BackgroundColor3 = Color3.fromRGB(181, 255, 120)
 						})
 						tween:Play()
 					end
